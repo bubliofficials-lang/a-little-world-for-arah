@@ -1,0 +1,524 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=DM+Sans:wght@400;500;600&display=swap');
+
+:root{
+  --yellow:#fff4a8;
+  --cream:#fffdf2;
+  --ink:#332d27;
+  --rose:#b94854;
+  --gold:#c59b38;
+  --white:#fff;
+  --shadow:0 22px 60px rgba(79,58,28,.12)
+}
+
+*{
+  box-sizing:border-box
+}
+
+html{
+  scroll-behavior:smooth
+}
+
+body{
+  margin:0;
+  background:var(--cream);
+  color:var(--ink);
+  font-family:'DM Sans',sans-serif;
+  overflow-x:hidden
+}
+
+.noise{
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  opacity:.035;
+  z-index:20;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.5'/%3E%3C/svg%3E")
+}
+
+.screen,.reveal{
+  min-height:100svh;
+  padding:28px 22px;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  position:relative
+}
+
+.hero{
+  background:radial-gradient(circle at 50% 35%,#fffef0 0,#fff8c9 38%,#f7eebd 100%);
+  text-align:center;
+  overflow:hidden
+}
+
+.sun-glow{
+  position:absolute;
+  width:420px;
+  height:420px;
+  border-radius:50%;
+  background:rgba(255,255,255,.48);
+  filter:blur(4px);
+  top:12%;
+  left:50%;
+  transform:translateX(-50%)
+}
+
+.hero-rose{
+  font-size:78px;
+  position:relative;
+  animation:float 4s ease-in-out infinite;
+  filter:drop-shadow(0 12px 16px rgba(115,43,45,.18))
+}
+
+.eyebrow{
+  font-size:10px;
+  letter-spacing:.24em;
+  font-weight:600;
+  opacity:.55;
+  margin:0 0 18px;
+  text-transform:uppercase
+}
+
+.hero .eyebrow{
+  margin-top:25px
+}
+
+h1,h2,h3,p{
+  position:relative
+}
+
+h1,h2,h3{
+  font-family:'Cormorant Garamond',serif
+}
+
+h1{
+  font-size:70px;
+  line-height:.85;
+  margin:0 0 20px;
+  font-weight:600
+}
+
+h1 span{
+  display:block;
+  color:#b58b22;
+  font-style:italic
+}
+
+h2{
+  font-size:48px;
+  line-height:.92;
+  margin:0 0 28px;
+  font-weight:600
+}
+
+h2 i{
+  color:var(--rose);
+  font-weight:500
+}
+
+.subtitle{
+  font-size:14px;
+  line-height:1.7;
+  opacity:.68
+}
+
+.primary,.secondary{
+  border:0;
+  border-radius:999px;
+  padding:15px 22px;
+  font:600 13px 'DM Sans';
+  cursor:pointer;
+  position:relative;
+  transition:.25s
+}
+
+.primary{
+  background:var(--ink);
+  color:white;
+  box-shadow:0 12px 30px rgba(51,45,39,.2)
+}
+
+.primary span{
+  margin-left:10px
+}
+
+.secondary{
+  background:white;
+  color:var(--ink);
+  box-shadow:var(--shadow)
+}
+
+button:active{
+  transform:scale(.96)
+}
+
+.hint{
+  font-size:10px;
+  letter-spacing:.12em;
+  opacity:.38;
+  margin-top:16px
+}
+
+.story{
+  background:#fff
+}
+
+.story-card{
+  width:min(100%,370px);
+  padding:34px 26px;
+  border:1px solid rgba(197,155,56,.18);
+  border-radius:28px;
+  text-align:center;
+  box-shadow:var(--shadow);
+  background:linear-gradient(145deg,#fff,#fffdf1)
+}
+
+.tiny-heart{
+  font-size:25px;
+  color:var(--rose);
+  margin-bottom:20px
+}
+
+.story-card p{
+  font-family:'Cormorant Garamond';
+  font-size:25px;
+  line-height:1.12;
+  margin:12px 0
+}
+
+.story-card .soft{
+  font-size:20px;
+  opacity:.65
+}
+
+.dots{
+  letter-spacing:8px;
+  color:#d1b44e;
+  margin:22px
+}
+
+.line{
+  height:1px;
+  background:#eadfb5;
+  margin:25px 30px
+}
+
+.memories{
+  background:#f9f3ce;
+  justify-content:center
+}
+
+.memory-stack{
+  width:min(100%,370px);
+  height:300px;
+  position:relative
+}
+
+.memory{
+  position:absolute;
+  inset:0;
+  background:white;
+  border-radius:28px;
+  padding:32px;
+  box-shadow:var(--shadow);
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  transition:.4s;
+  touch-action:pan-y
+}
+
+.memory:not(.active){
+  transform:scale(.94) translateY(15px);
+  opacity:0;
+  pointer-events:none
+}
+
+.memory .num{
+  font-size:10px;
+  letter-spacing:.2em;
+  color:#b18c2c
+}
+
+.memory strong{
+  font:600 35px 'Cormorant Garamond';
+  margin:12px 0
+}
+
+.memory p{
+  font-family:'Cormorant Garamond';
+  font-size:22px;
+  line-height:1.2;
+  opacity:.72
+}
+
+.swipe{
+  font-size:10px;
+  letter-spacing:.12em;
+  opacity:.45;
+  margin-top:24px
+}
+
+.swipe span{
+  margin:0 10px
+}
+
+.love{
+  background:#fffaf9
+}
+
+.love-grid{
+  width:min(100%,390px);
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:12px
+}
+
+.love-card{
+  min-height:180px;
+  border:0;
+  border-radius:24px;
+  padding:20px;
+  text-align:left;
+  background:white;
+  box-shadow:var(--shadow);
+  cursor:pointer;
+  color:var(--ink)
+}
+
+.love-card.wide{
+  grid-column:1/-1;
+  min-height:145px;
+  background:#fff8cf
+}
+
+.love-card b{
+  font-size:9px;
+  opacity:.4
+}
+
+.love-card span{
+  display:block;
+  font-size:24px;
+  margin:13px 0 4px;
+  color:var(--rose)
+}
+
+.love-card h3{
+  font-size:27px;
+  line-height:.9;
+  margin:0
+}
+
+.love-note{
+  width:min(100%,390px);
+  min-height:54px;
+  text-align:center;
+  font:18px 'Cormorant Garamond';
+  opacity:.7;
+  margin-top:18px
+}
+
+.clock{
+  text-align:center;
+  background:radial-gradient(circle at center,#fffef1,#f9f0bd)
+}
+
+.clock-face{
+  width:185px;
+  height:185px;
+  border:1px solid rgba(181,139,34,.3);
+  border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:7px;
+  background:rgba(255,255,255,.42);
+  box-shadow:0 0 0 15px rgba(255,255,255,.18),0 20px 50px rgba(93,72,29,.08);
+  margin:5px 0 28px
+}
+
+.clock-face span{
+  font:600 52px 'Cormorant Garamond'
+}
+
+.clock-face small{
+  font:40px 'Cormorant Garamond';
+  color:var(--gold)
+}
+
+.clock p{
+  opacity:.6
+}
+
+.clock-letter{
+  width:min(100%,390px);
+  font:20px/1.35 'Cormorant Garamond';
+  opacity:.72!important;
+  margin:0 0 14px
+}
+
+.wish-text{
+  margin-top:25px;
+  font:italic 24px 'Cormorant Garamond';
+  color:var(--rose);
+  opacity:0;
+  transform:translateY(8px);
+  transition:.5s
+}
+
+.wish-text.show{
+  opacity:1;
+  transform:none
+}
+
+.rose-end{
+  text-align:center;
+  background:linear-gradient(180deg,#fffdf2,#fff8da);
+  min-height:110svh
+}
+
+.big-rose{
+  font-size:90px;
+  filter:drop-shadow(0 18px 22px rgba(120,30,35,.18));
+  transition:1s
+}
+
+.big-rose.bloom{
+  transform:scale(1.45) rotate(-4deg)
+}
+
+.rose-sub{
+  font:22px 'Cormorant Garamond';
+  opacity:.62;
+  line-height:1.2
+}
+
+/* FINAL MESSAGE */
+
+.final{
+  max-height:0;
+  overflow:hidden;
+  opacity:0;
+  transition:1s ease;
+  margin-top:0;
+  width:min(100%,430px)
+}
+
+.final.show{
+  max-height:20000px;
+  opacity:1;
+  margin-top:28px;
+  overflow:visible
+}
+
+.final-main{
+  font:26px/1.25 'Cormorant Garamond';
+  margin:0 0 18px!important;
+  height:auto;
+  max-height:none;
+  overflow:visible
+}
+
+.final-main i{
+  color:var(--rose)
+}
+
+.final-small{
+  font:italic 25px 'Cormorant Garamond';
+  color:var(--rose);
+  margin:0 0 12px
+}
+
+.signature{
+  font:italic 20px 'Cormorant Garamond';
+  margin-top:22px
+}
+
+.final-note{
+  font-size:9px;
+  opacity:.3;
+  letter-spacing:.12em
+}
+
+.music{
+  position:fixed;
+  z-index:30;
+  right:16px;
+  top:16px;
+  width:38px;
+  height:38px;
+  border-radius:50%;
+  border:1px solid rgba(51,45,39,.1);
+  background:rgba(255,255,255,.7);
+  backdrop-filter:blur(8px);
+  font-size:17px;
+  color:var(--ink);
+  cursor:pointer
+}
+
+.music.playing{
+  animation:pulse 1.5s infinite
+}
+
+.reveal{
+  opacity:0;
+  transform:translateY(25px);
+  transition:1s ease
+}
+
+.reveal.visible{
+  opacity:1;
+  transform:none
+}
+
+#petals{
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  z-index:10;
+  overflow:hidden
+}
+
+.petal{
+  position:absolute;
+  top:-30px;
+  font-size:18px;
+  animation:fall linear forwards;
+  opacity:.65
+}
+
+@keyframes fall{
+  to{
+    transform:translateY(110vh) rotate(480deg);
+    opacity:0
+  }
+}
+
+@keyframes float{
+  50%{
+    transform:translateY(-10px) rotate(2deg)
+  }
+}
+
+@keyframes pulse{
+  50%{
+    transform:scale(1.08)
+  }
+}
+
+@media(min-width:700px){
+  main{
+    max-width:520px;
+    margin:auto;
+    box-shadow:0 0 80px rgba(70,50,20,.08)
+  }
+
+  body{
+    background:#eee8d9
+  }
+
+  .screen,.reveal{
+    min-height:820px
+  }
+}
